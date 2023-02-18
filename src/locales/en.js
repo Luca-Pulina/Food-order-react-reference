@@ -1,5 +1,6 @@
 export default {
     translation: {
-        welcome: 'Welcome to React',
+        APP_TITLE: 'ReactMeals',
+        CART: 'Cart',
     },
 }
