@@ -1,4 +1,8 @@
-const DUMMY_DEALS = [
+import { Dish } from "../../types/Meal"
+import Card from "../UI/Card"
+import MealItem from "./MealItem"
+
+const DUMMY_DEALS: Dish[] = [
 	{
 		id: "m1",
 		name: "Monster Burger",
@@ -32,10 +36,12 @@ const DUMMY_DEALS = [
 ]
 
 const AvailableMeals = () => {
-	const mealList = DUMMY_DEALS.map((meal) => <li key={meal.id}>{meal.name}</li>)
+	const mealList = DUMMY_DEALS.map((meal) => <li key={meal.id}>{<MealItem item={meal} />}</li>)
 	return (
 		<section>
-			<ul>{mealList}</ul>
+			<Card>
+				<ul>{mealList}</ul>
+			</Card>
 		</section>
 	)
 }
