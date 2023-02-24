@@ -1,8 +1,23 @@
+import { ChangeEvent, useState } from "react"
 import Input from "../UI/Input"
 
-const MealItemForm = () => {
+interface Props {
+	onAddToCart: (p: number) => void
+}
+
+const MealItemForm = ({ onAddToCart }: Props) => {
+	const [amount, setAmount] = useState(0)
+	const submitHandler = (event: React.FormEvent) => {
+		event.preventDefault()
+		onAddToCart(amount)
+	}
+
+	const amountChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+		setAmount(+event.target.value)
+	}
+
 	return (
-		<form className='flex flex-col' action=''>
+		<form className='flex flex-col' onSubmit={submitHandler}>
 			<Input
 				type='number'
 				id='amount'
@@ -11,9 +26,11 @@ const MealItemForm = () => {
 				min={1}
 				max={5}
 				step={1}
+				value={amount}
+				onChange={amountChangeHandler}
 			/>
 			<br />
-			<button>Confirm</button>
+			<button type='submit'>+ Add</button>
 		</form>
 	)
 }
