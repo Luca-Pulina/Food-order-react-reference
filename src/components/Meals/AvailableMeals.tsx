@@ -22,7 +22,7 @@ const DUMMY_DEALS: Dish[] = [
 		price: 9.99,
 	},
 	{
-		id: "m3",
+		id: "m4",
 		name: "Ghostly Grilled Cheese",
 		description: "Melted cheese sandwich with spooky ghost-shaped bread",
 		price: 8.49,

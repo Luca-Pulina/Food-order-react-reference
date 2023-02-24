@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from "react"
+import { ChangeEventHandler, HTMLInputTypeAttribute } from "react"
 
 interface Props extends React.BaseHTMLAttributes<HTMLInputElement> {
 	type?: HTMLInputTypeAttribute
@@ -7,8 +7,10 @@ interface Props extends React.BaseHTMLAttributes<HTMLInputElement> {
 	min?: number
 	max?: number
 	step?: number
+	value?: string | number
+	onChange?: ChangeEventHandler<HTMLInputElement>
 }
-const Input = ({ type = "text", id, labelText, min, max, step }: Props) => {
+const Input = ({ type = "text", id, labelText, min, max, step, value, onChange }: Props) => {
 	return (
 		<>
 			{labelText && <label htmlFor={id}>{labelText}</label>}
@@ -19,6 +21,8 @@ const Input = ({ type = "text", id, labelText, min, max, step }: Props) => {
 				max={max}
 				step={step}
 				id={id}
+				value={value}
+				onChange={onChange}
 			/>
 		</>
 	)

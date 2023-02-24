@@ -19,6 +19,7 @@ const ModalOverlay = ({ children }: Props) => {
 }
 
 const portalElement = document.getElementById("overlays")
+
 const Modal = ({ children }: Props) => {
 	return (
 		<>

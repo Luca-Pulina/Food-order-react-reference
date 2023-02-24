@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, SetStateAction, useContext } from "react"
+import CartContext from "../../store/cart-context"
 import Modal from "../UI/Modal"
 
 interface Props {
@@ -6,31 +7,36 @@ interface Props {
 }
 
 const Cart = ({ onClose }: Props) => {
+	const cartCtx = useContext(CartContext)
 	const cartItems = (
 		<ul>
-			{[
-				{
-					id: "m1",
-					name: "Monster Burger",
-					description: "Ugly hamburger with toxic substances",
-					price: 16.26,
-				},
-			].map((item) => (
-				<li key={item.id}>{item.name}</li>
+			{cartCtx.items.map((item) => (
+				<li key={item.id}>
+					x{item.amount} - {item.name}
+				</li>
 			))}
 		</ul>
 	)
 
 	return (
 		<Modal>
-			{cartItems}
-			<div>
-				<span>Total Amount</span>
-				<span>55.65</span>
-			</div>
-			<div>
-				<button onClick={() => onClose(false)}>Close</button>
-				<button>Order</button>
+			<div className='flex w-full h-full rounded-2xl flex-col gap-4 bg-gray-800'>
+				{cartItems}
+				<div>
+					<span>Total Amount: </span>
+					<span>{cartCtx.totalAmount.toFixed(2)} $</span>
+				</div>
+				<div className='w-full flex justify-end'>
+					<button
+						className='bg-white rounded-2xl text-purple-500 px-4 py-2'
+						onClick={() => onClose(false)}
+					>
+						Close
+					</button>
+					<button className='bg-purple-500 rounded-2xl text-purple-white px-4 py-2'>
+						Order
+					</button>
+				</div>
 			</div>
 		</Modal>
 	)

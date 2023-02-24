@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction, ReactNode } from "react"
+import { Dispatch, SetStateAction, ReactNode, useContext } from "react"
+import CartContext from "../../store/cart-context"
+
 import CartIcon from "../Cart/CartIcon"
 
 interface Props extends React.BaseHTMLAttributes<HTMLButtonElement> {
@@ -9,6 +11,11 @@ interface Props extends React.BaseHTMLAttributes<HTMLButtonElement> {
 }
 
 const HeaderCartButton = ({ text, children, items = 0, onShowCart }: Props) => {
+	const cartCtx = useContext(CartContext)
+
+	const numberOfCartItems = cartCtx.items.reduce((accumulator, item: any) => {
+		return accumulator + item.amount
+	}, 0)
 	return (
 		<button
 			onClick={() => onShowCart(true)}
@@ -17,7 +24,7 @@ const HeaderCartButton = ({ text, children, items = 0, onShowCart }: Props) => {
 			<CartIcon />
 			<span className='font-semibold'>{text ?? children}</span>
 			<div className='w-8 h-6 px-2 rounded-full flex items-center justify-center bg-purple-800'>
-				{items}
+				{numberOfCartItems}
 			</div>
 		</button>
 	)
