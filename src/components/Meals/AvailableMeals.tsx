@@ -1,47 +1,48 @@
+import { useEffect, useState } from "react"
 import { Dish } from "../../types/Meal"
 import Card from "../UI/Card"
 import MealItem from "./MealItem"
 
-const DUMMY_DEALS: Dish[] = [
-	{
-		id: "m1",
-		name: "Monster Burger",
-		description: "Ugly hamburger with toxic substances",
-		price: 16.26,
-	},
-	{
-		id: "m2",
-		name: "Fried Fingers",
-		description: "Crispy breaded chicken fingers that look like severed fingers",
-		price: 12.99,
-	},
-	{
-		id: "m3",
-		name: "Spider Soup",
-		description: "Thick, hearty soup with spider-shaped noodles",
-		price: 9.99,
-	},
-	{
-		id: "m4",
-		name: "Ghostly Grilled Cheese",
-		description: "Melted cheese sandwich with spooky ghost-shaped bread",
-		price: 8.49,
-	},
-	{
-		id: "m5",
-		name: "Bat Wings",
-		description: "Spicy buffalo chicken wings shaped like bat wings",
-		price: 14.99,
-	},
-]
-
 const AvailableMeals = () => {
-	const mealList = DUMMY_DEALS.map((meal) => <li key={meal.id}>{<MealItem item={meal} />}</li>)
+	const [meals, setMeals] = useState<Dish[]>([])
+
+	const [httpStatus, setHttpStatus] = useState<"success" | "loading" | "error" | "start">("start")
+
+	useEffect(() => {
+		//TODO: Refactor....maybe with axios
+		const fetchMeal = async () => {
+			setHttpStatus("loading")
+
+			const response: Response = await fetch(`${import.meta.env.VITE_BASE_URL}/meals`)
+
+			if (!response.ok) {
+				throw Error("Bad Request !")
+			}
+			const responseData: Dish[] = await response.json()
+			setMeals(responseData)
+			setHttpStatus("success")
+		}
+
+		fetchMeal().catch((error) => {
+			setHttpStatus("error")
+		})
+	}, [])
+
+	const cardContent: Record<string, JSX.Element> = {
+		loading: <h2 className='text-white text-lg'>...Loading</h2>,
+		error: <h2 className='text-white text-lg'>...Error</h2>,
+		success: (
+			<ul>
+				{meals.map((meal) => (
+					<li key={meal.id}>{<MealItem item={meal} />}</li>
+				))}
+			</ul>
+		),
+	}
+
 	return (
 		<section>
-			<Card>
-				<ul>{mealList}</ul>
-			</Card>
+			<Card>{cardContent[httpStatus]}</Card>
 		</section>
 	)
 }
