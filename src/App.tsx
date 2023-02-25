@@ -9,13 +9,13 @@ function App() {
 
 	return (
 		<CartProvider>
-			<div className='w-screen h-screen bg-gray-900'>
+			<div className='w-screen h-screen overflow-y-scroll'>
 				{isShownCart && <Cart onClose={setIsShownCart} />}
 				<Header
 					onShowCart={setIsShownCart}
 					className='w-full h-[10%] border-b-2 border-purple-600  shadow-purple-800 shadow-md'
 				/>
-				<main className='w-full py-10 flex justify-center '>
+				<main className='w-full py-10 flex justify-center'>
 					<Meals />
 				</main>
 			</div>
