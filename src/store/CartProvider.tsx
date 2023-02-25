@@ -2,7 +2,10 @@ import { ReactNode, useReducer } from "react"
 import { CartDish, CartState } from "../types/Cart"
 import CartContext from "./cart-context"
 
-type ACTIONTYPE = { type: "ADD_ITEM"; item: CartDish } | { type: "REMOVE_ITEM"; id: string }
+type ACTIONTYPE =
+	| { type: "ADD_ITEM"; item: CartDish }
+	| { type: "REMOVE_ITEM"; id: string }
+	| { type: "CLEAR" }
 interface Props {
 	children: ReactNode
 }
@@ -32,12 +35,15 @@ const cartReducer = (state: typeof defaultCartState, action: ACTIONTYPE): CartSt
 			return { items: updateItems, totalAmount: updateTotalAmount }
 			break
 		}
-		case "REMOVE_ITEM":
-			{
-				const existingItemIndex = state.items.findIndex((item) => item.id === action.id)
-				//TODO
-			}
+		case "REMOVE_ITEM": {
+			const existingItemIndex = state.items.findIndex((item) => item.id === action.id)
+			//TODO
 			break
+		}
+		case "CLEAR": {
+			return defaultCartState
+			break
+		}
 
 		default:
 			break
@@ -54,11 +60,16 @@ const CartProvider = ({ children }: Props) => {
 	const removeItemToCartHandler = (id: string) => {
 		dispatchCartAction({ type: "REMOVE_ITEM", id })
 	}
+
+	const clearCartHandler = () => {
+		dispatchCartAction({ type: "CLEAR" })
+	}
 	const cartContext = {
 		items: cartState.items,
 		totalAmount: cartState.totalAmount,
 		addItem: addItemToCartHandler,
 		removeItem: removeItemToCartHandler,
+		clearCart: clearCartHandler,
 	}
 	return <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
 }
