@@ -30,5 +30,6 @@
 			"description": "Spicy buffalo chicken wings shaped like bat wings",
 			"price": 14.99
 		}
-	]
+	],
+	"orders": []
 }
