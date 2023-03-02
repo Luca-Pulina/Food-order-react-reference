@@ -49,7 +49,7 @@ const Cart = ({ onClose }: Props) => {
 	}
 	return (
 		<Modal>
-			<div className='flex w-full h-full rounded-2xl flex-col gap-4 bg-gray-800'>
+			<div className='flex w-full h-full rounded-2xl flex-col gap-4 bg-gray-800 p-6'>
 				{cartItems}
 				<div className='px-2 pb-4 border-b-2 border-b-white  '>
 					<span className='text-lg font-semibold '>Total Amount: </span>
@@ -57,13 +57,15 @@ const Cart = ({ onClose }: Props) => {
 				</div>
 				{isCheckout && <Checkout onConfirm={submitOrderHandler} onClose={onClose} />}
 				{!isCheckout && (
-					<div className='w-full flex justify-end'>
+					<div className='w-full flex justify-end gap-2'>
 						<Button design='secondary' onClick={() => onClose(false)}>
 							Close
 						</Button>
-						<Button onClick={orderHandler} design='primary'>
-							Order
-						</Button>
+						{!!cartCtx.items.length && (
+							<Button onClick={orderHandler} design='primary'>
+								Order
+							</Button>
+						)}
 					</div>
 				)}
 			</div>
