@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Dish } from "../../types/Meal"
 import Card from "../UI/Card"
 import MealItem from "./MealItem"
 
 const AvailableMeals = () => {
+	const { t } = useTranslation()
 	const [meals, setMeals] = useState<Dish[]>([])
 
 	const [httpStatus, setHttpStatus] = useState<"success" | "loading" | "error" | "start">("start")
@@ -16,7 +18,8 @@ const AvailableMeals = () => {
 			const response: Response = await fetch(`${import.meta.env.VITE_BASE_URL}/meals`)
 
 			if (!response.ok) {
-				throw Error("Bad Request !")
+				const errorMessage = t("ERRORS.HTTP_BAD_REQUEST")
+				throw Error(errorMessage)
 			}
 			const responseData: Dish[] = await response.json()
 			setMeals(responseData)
@@ -29,8 +32,8 @@ const AvailableMeals = () => {
 	}, [])
 
 	const cardContent: Record<string, JSX.Element> = {
-		loading: <h2 className='text-white text-lg'>...Loading</h2>,
-		error: <h2 className='text-white text-lg'>...Error</h2>,
+		loading: <h2 className='text-white text-lg'>...{t("LOADING")}</h2>,
+		error: <h2 className='text-white text-lg'>...{t("ERROR")}</h2>,
 		success: (
 			<ul>
 				{meals.map((meal) => (

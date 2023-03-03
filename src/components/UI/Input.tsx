@@ -3,7 +3,7 @@ import { ChangeEventHandler, HTMLInputTypeAttribute } from "react"
 interface Props extends React.BaseHTMLAttributes<HTMLInputElement> {
 	type?: HTMLInputTypeAttribute
 	id?: string
-	labelText?: string
+	labelText?: string | null
 	min?: number
 	max?: number
 	step?: number

@@ -15,7 +15,6 @@ const MealItem = ({ item }: Props) => {
 	const { name, description } = item
 	const price = `${item.price.toFixed(2)} ${t("CURRENCY")}`
 	const addToCartHandler = (amount: number) => {
-		console.log("amount", amount)
 		cartCtx.addItem({ ...item, amount })
 	}
 	return (

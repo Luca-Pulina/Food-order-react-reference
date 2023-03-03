@@ -23,7 +23,7 @@ const Checkout = ({ onClose, onConfirm }: Props) => {
 
 		const invalidField = formInputs.find((field) => isEmpty(checkoutFormState[field]))
 		if (invalidField) {
-			setEmptyFieldError(` ${t(invalidField.toUpperCase())} -  is Empty`)
+			setEmptyFieldError(` ${t(invalidField.toUpperCase())} -  ${t("IS_EMPTY")}`)
 		} else {
 			setEmptyFieldError("")
 			console.log({ checkoutFormState })
@@ -60,10 +60,10 @@ const Checkout = ({ onClose, onConfirm }: Props) => {
 			{emptyFieldError && <div className='text-red-500'>{emptyFieldError}</div>}
 			<footer className='flex py-4 px-2 gap-2 justify-end '>
 				<Button type='button' design='secondary' onClick={() => onClose(false)}>
-					Cancel
+					{t("CANCEL")}
 				</Button>
 				<Button type='submit' design='primary'>
-					Confirm
+					{t("CONFIRM")}
 				</Button>
 			</footer>
 		</form>
