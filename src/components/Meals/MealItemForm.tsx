@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from "react"
+import { useTranslation } from "react-i18next"
 import Input from "../UI/Input"
 
 interface Props {
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const MealItemForm = ({ onAddToCart }: Props) => {
+	const { t } = useTranslation()
 	const [amount, setAmount] = useState(0)
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault()
@@ -30,7 +32,7 @@ const MealItemForm = ({ onAddToCart }: Props) => {
 				onChange={amountChangeHandler}
 			/>
 			<br />
-			<button type='submit'>+ Add</button>
+			<button type='submit'>+ {t("ADD")}</button>
 		</form>
 	)
 }

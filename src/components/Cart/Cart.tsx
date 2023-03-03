@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react"
+import { useTranslation } from "react-i18next"
 import CartContext from "../../store/cart-context"
 import { CheckoutForm } from "../../types/Checkout"
 import Button from "../UI/Button"
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const Cart = ({ onClose }: Props) => {
+	const { t } = useTranslation()
 	const cartCtx = useContext(CartContext)
 	const [isCheckout, setCheckout] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -52,18 +54,20 @@ const Cart = ({ onClose }: Props) => {
 			<div className='flex w-full h-full rounded-2xl flex-col gap-4 bg-gray-800 p-6'>
 				{cartItems}
 				<div className='px-2 pb-4 border-b-2 border-b-white  '>
-					<span className='text-lg font-semibold '>Total Amount: </span>
-					<span>{cartCtx.totalAmount.toFixed(2)} $</span>
+					<span className='text-lg font-semibold '>{t("TOTAL_AMOUNT")}: </span>
+					<span>
+						{cartCtx.totalAmount.toFixed(2)} {t("CURRENCY")}
+					</span>
 				</div>
 				{isCheckout && <Checkout onConfirm={submitOrderHandler} onClose={onClose} />}
 				{!isCheckout && (
 					<div className='w-full flex justify-end gap-2'>
 						<Button design='secondary' onClick={() => onClose(false)}>
-							Close
+							{t("CLOSE")}
 						</Button>
 						{!!cartCtx.items.length && (
 							<Button onClick={orderHandler} design='primary'>
-								Order
+								{t("ORDER")}
 							</Button>
 						)}
 					</div>
