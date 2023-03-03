@@ -5,7 +5,7 @@ import Card from "../UI/Card"
 import MealItem from "./MealItem"
 
 const AvailableMeals = () => {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const [meals, setMeals] = useState<Dish[]>([])
 
 	const [httpStatus, setHttpStatus] = useState<"success" | "loading" | "error" | "start">("start")
@@ -15,7 +15,9 @@ const AvailableMeals = () => {
 		const fetchMeal = async () => {
 			setHttpStatus("loading")
 
-			const response: Response = await fetch(`${import.meta.env.VITE_BASE_URL}/meals`)
+			const response: Response = await fetch(
+				`${import.meta.env.VITE_BASE_URL}/${i18n.language}-meals`,
+			)
 
 			if (!response.ok) {
 				const errorMessage = t("ERRORS.HTTP_BAD_REQUEST")
@@ -29,7 +31,7 @@ const AvailableMeals = () => {
 		fetchMeal().catch((error) => {
 			setHttpStatus("error")
 		})
-	}, [])
+	}, [i18n.language])
 
 	const cardContent: Record<string, JSX.Element> = {
 		loading: <h2 className='text-white text-lg'>...{t("LOADING")}</h2>,
@@ -37,7 +39,9 @@ const AvailableMeals = () => {
 		success: (
 			<ul>
 				{meals.map((meal) => (
-					<li key={meal.id}>{<MealItem item={meal} />}</li>
+					<li key={meal.id} className='my-2'>
+						{<MealItem item={meal} />}
+					</li>
 				))}
 			</ul>
 		),
@@ -45,7 +49,7 @@ const AvailableMeals = () => {
 
 	return (
 		<section>
-			<Card>{cardContent[httpStatus]}</Card>
+			<Card className='p-2'>{cardContent[httpStatus]}</Card>
 		</section>
 	)
 }
