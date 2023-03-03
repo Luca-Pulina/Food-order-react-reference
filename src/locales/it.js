@@ -2,7 +2,7 @@ export default {
     translation: {
         ADD: "Aggiungi",
         AMOUNT: "Qtà",
-        APP_TITLE: "ReactMeals",
+        APP_TITLE: "Fantasy Horror Plates",
         CANCEL: "Annulla",
         CAP: "Cap",
         CART: "Carrello",
