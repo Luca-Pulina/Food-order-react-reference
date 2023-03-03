@@ -23,7 +23,7 @@ const Checkout = ({ onClose, onConfirm }: Props) => {
 
 		const invalidField = formInputs.find((field) => isEmpty(checkoutFormState[field]))
 		if (invalidField) {
-			setEmptyFieldError(` ${t(invalidField.toUpperCase())} -  is Empty`)
+			setEmptyFieldError(` ${t(invalidField.toUpperCase())} -  ${t("IS_EMPTY")}`)
 		} else {
 			setEmptyFieldError("")
 			console.log({ checkoutFormState })

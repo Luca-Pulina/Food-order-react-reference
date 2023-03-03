@@ -23,7 +23,7 @@ const MealItemForm = ({ onAddToCart }: Props) => {
 			<Input
 				type='number'
 				id='amount'
-				labelText='Amount'
+				labelText={t("AMOUNT")}
 				defaultValue={1}
 				min={1}
 				max={5}
