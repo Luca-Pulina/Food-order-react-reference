@@ -5,6 +5,7 @@ import it from "./src/locales/it"
 
 i18n.use(initReactI18next).init({
     debug: true,
+    lng: "en",
     fallbackLng: "en",
     interpolation: {
         escapeValue: false, // not needed for react as it escapes by default
