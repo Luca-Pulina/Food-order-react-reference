@@ -1,4 +1,6 @@
 import React from "react"
+import { Link } from "react-router-dom"
+import Button from "../components/UI/Button"
 
 const AboutUs = () => {
 	return (
@@ -7,6 +9,11 @@ const AboutUs = () => {
 			<div className='flex flex-col gap-4'>
 				<p>Prova prova prova</p>
 			</div>
+			<Button>
+				<Link to='/'>
+					<div className='w-full h-full border border-white rounded-xl '>Go to Meals</div>
+				</Link>
+			</Button>
 		</section>
 	)
 }
