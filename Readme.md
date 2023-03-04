@@ -1,6 +1,8 @@
 # Fantasy Horror Plates - Fake Food Order App
 
-Welcome to Fantasy Horror Plates, a fake food order app where you can explore and order from a variety of spooky and delicious dishes inspired by your favorite horror stories and characters. This React project uses Typescript, useContext, esLint, Prettier, Tailwind, and i18n to create a seamless and enjoyable user experience.
+Welcome to Fantasy Horror Plates, a fake food order app where you can explore and order from a variety of spooky and delicious dishes inspired by your favorite horror stories and characters. This React project uses Typescript, useContext, Redux, esLint, Prettier, Tailwind, and i18n to create a seamless and enjoyable user experience.
+
+Note: useContext is in branch `context-branch` NOT in main
 
 ## Installation
 
@@ -25,6 +27,7 @@ This app was built with the following technologies:
 
 -   [React](https://reactjs.org/)
 -   [Typescript](https://www.typescriptlang.org/)
+-   [Redux Toolkit](https://redux-toolkit.js.org//)
 -   [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
 -   [esLint](https://eslint.org/)
 -   [Prettier](https://prettier.io/)
