@@ -1,25 +1,26 @@
-import { Dispatch, SetStateAction, useContext, useState } from "react"
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
-import CartContext from "../../store/cart-context"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../reduxStore"
+import { cartActions } from "../../reduxStore/cart-slice"
+import { uiActions } from "../../reduxStore/ui-slice"
 import { CheckoutForm } from "../../types/Checkout"
 import Button from "../UI/Button"
 import Modal from "../UI/Modal"
 import Checkout from "./Checkout/Checkout"
 
-interface Props {
-	onClose: Dispatch<SetStateAction<boolean>>
-}
-
-const Cart = ({ onClose }: Props) => {
+const Cart = () => {
 	const { t } = useTranslation()
-	const cartCtx = useContext(CartContext)
+	const dispatch = useDispatch()
 	const [isCheckout, setCheckout] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
-	const cartItems = (
+	const cartItems = useSelector((state: RootState) => state.cart.items)
+	const totalPriceCart = useSelector((state: RootState) => state.cart.totalPrice)
+	const mappedcartItems = (
 		<ul>
-			{cartCtx.items.map((item) => (
+			{cartItems.map((item) => (
 				<li key={item.id}>
-					x{item.amount} - {item.name}
+					x{item.amount} - {item.name} - {item.price}
 				</li>
 			))}
 		</ul>
@@ -39,33 +40,34 @@ const Cart = ({ onClose }: Props) => {
 			body: JSON.stringify({
 				id: Math.random(), //very bad...
 				user: userData,
-				items: cartCtx.items,
+				items: cartItems,
 				date: orderDate.toLocaleDateString("en-US"),
 			}),
 		})
 		setIsSubmitting(false)
 		if (!isSubmitting) {
-			onClose(false)
-			cartCtx.clearCart()
+			dispatch(uiActions.toggle())
+			dispatch(cartActions.clearCart())
 		}
 	}
 	return (
 		<Modal>
 			<div className='flex w-full h-full rounded-2xl flex-col gap-4 bg-gray-800 p-6'>
-				{cartItems}
+				{mappedcartItems}
 				<div className='px-2 pb-4 border-b-2 border-b-white  '>
 					<span className='text-lg font-semibold '>{t("TOTAL_AMOUNT")}: </span>
 					<span>
-						{cartCtx.totalAmount.toFixed(2)} {t("CURRENCY")}
+						{" "}
+						{totalPriceCart.toFixed(2)} {t("CURRENCY")}{" "}
 					</span>
 				</div>
-				{isCheckout && <Checkout onConfirm={submitOrderHandler} onClose={onClose} />}
+				{isCheckout && <Checkout onConfirm={submitOrderHandler} />}
 				{!isCheckout && (
 					<div className='w-full flex justify-end gap-2'>
-						<Button design='secondary' onClick={() => onClose(false)}>
+						<Button design='secondary' onClick={() => dispatch(uiActions.toggle())}>
 							{t("CLOSE")}
 						</Button>
-						{!!cartCtx.items.length && (
+						{!!cartItems.length && (
 							<Button onClick={orderHandler} design='primary'>
 								{t("ORDER")}
 							</Button>

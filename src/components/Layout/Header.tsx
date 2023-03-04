@@ -4,11 +4,7 @@ import mealsImage from "../../assets/buffetMonster.jpg"
 import Button from "../UI/Button"
 import HeaderCartButton from "./HeaderCartButton"
 
-interface Props extends React.BaseHTMLAttributes<HTMLDivElement> {
-	onShowCart: Dispatch<SetStateAction<boolean>>
-}
-
-const Header = ({ className, onShowCart }: Props) => {
+const Header = ({ className }: React.BaseHTMLAttributes<HTMLDivElement>) => {
 	const { t, i18n } = useTranslation()
 	const handleSwitchLanguage = () => {
 		i18n.language === "en" ? i18n.changeLanguage("it") : i18n.changeLanguage("en")
@@ -18,7 +14,7 @@ const Header = ({ className, onShowCart }: Props) => {
 			<header className={`flex justify-between items-center px-10 ${className}`}>
 				<h1 className=' text-2xl text-purple-600'>{t("APP_TITLE")}</h1>
 				<div className='flex justify-between items-center gap-2'>
-					<HeaderCartButton text={t("CART")} onShowCart={onShowCart} />
+					<HeaderCartButton text={t("CART")} />
 					<Button design='secondary' onClick={handleSwitchLanguage}>
 						{i18n.language.toUpperCase()}
 					</Button>
