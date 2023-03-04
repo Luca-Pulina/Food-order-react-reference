@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
+import Button from "../UI/Button"
 
 const MealsSummary = () => {
 	const { t } = useTranslation()
@@ -8,6 +10,13 @@ const MealsSummary = () => {
 			<div className='flex flex-col gap-4'>
 				<p>{t("SUMMARY.P1")}</p>
 				<p>{t("SUMMARY.P2")}</p>
+				<Button>
+					<Link to='/about-us'>
+						<div className='w-full h-full border border-white rounded-xl '>
+							About us
+						</div>
+					</Link>
+				</Button>
 			</div>
 		</section>
 	)
