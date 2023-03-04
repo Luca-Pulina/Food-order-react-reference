@@ -15,7 +15,7 @@ const Input = ({ type = "text", id, labelText, min, max, step, value, onChange }
 		<>
 			{labelText && <label htmlFor={id}>{labelText}</label>}
 			<input
-				className=' border-b-2 border-purple-400  bg-gray-700'
+				className=' border-b-2 border-purple-400  bg-gray-700 text-center'
 				type={type}
 				min={min}
 				max={max}

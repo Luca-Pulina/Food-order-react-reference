@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next"
 import { Dish } from "../../types/Meal"
-import { useContext } from "react"
 
 import MealItemForm from "./MealItemForm"
-import CartContext from "../../store/cart-context"
+import { useDispatch } from "react-redux"
+import { cartActions } from "../../reduxStore/cart-slice"
 
 interface Props {
 	item: Dish
@@ -11,11 +11,14 @@ interface Props {
 
 const MealItem = ({ item }: Props) => {
 	const { t } = useTranslation()
-	const cartCtx = useContext(CartContext)
+	const dispatch = useDispatch()
 	const { name, description } = item
 	const price = `${item.price.toFixed(2)} ${t("CURRENCY")}`
 	const addToCartHandler = (amount: number) => {
-		cartCtx.addItem({ ...item, amount })
+		dispatch(cartActions.addItemToCart({ ...item, amount }))
+	}
+	const removeToCartHandler = () => {
+		dispatch(cartActions.removeItemToCart(item.id))
 	}
 	return (
 		<div className='p-2 bg-gray-700 m-1 rounded-2xl flex items-center justify-between'>
@@ -25,7 +28,7 @@ const MealItem = ({ item }: Props) => {
 				<div>{price}</div>
 			</div>
 			<div>
-				<MealItemForm onAddToCart={addToCartHandler} />
+				<MealItemForm onAddToCart={addToCartHandler} onRemoveToCart={removeToCartHandler} />
 			</div>
 		</div>
 	)

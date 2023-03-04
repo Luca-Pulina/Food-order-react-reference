@@ -1,22 +1,24 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState, useReducer } from "react"
+import { ChangeEvent, useState, useReducer } from "react"
 import { useTranslation } from "react-i18next"
+import { useDispatch } from "react-redux"
+import { uiActions } from "../../../reduxStore/ui-slice"
 import { CheckoutForm } from "../../../types/Checkout"
 import Button from "../../UI/Button"
 import Input from "../../UI/Input"
 import { defaultFormState, formReducer } from "./FormReducer"
 
 interface Props {
-	onClose: Dispatch<SetStateAction<boolean>>
 	onConfirm: (userData: CheckoutForm) => void
 }
 
 const formInputs = Object.keys(defaultFormState) as Array<keyof typeof defaultFormState>
 const isEmpty = (value: string) => value.trim() === ""
 
-const Checkout = ({ onClose, onConfirm }: Props) => {
+const Checkout = ({ onConfirm }: Props) => {
 	const { t } = useTranslation()
 
 	const [emptyFieldError, setEmptyFieldError] = useState("")
+	const dispatch = useDispatch()
 
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault()
@@ -59,7 +61,11 @@ const Checkout = ({ onClose, onConfirm }: Props) => {
 			{formInputDivs}
 			{emptyFieldError && <div className='text-red-500'>{emptyFieldError}</div>}
 			<footer className='flex py-4 px-2 gap-2 justify-end '>
-				<Button type='button' design='secondary' onClick={() => onClose(false)}>
+				<Button
+					type='button'
+					design='secondary'
+					onClick={() => dispatch(uiActions.toggle())}
+				>
 					{t("CANCEL")}
 				</Button>
 				<Button type='submit' design='primary'>
