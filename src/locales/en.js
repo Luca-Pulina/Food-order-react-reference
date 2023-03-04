@@ -18,6 +18,7 @@ export default {
         LOADING: "Loading",
         NAME: "Name",
         ORDER: "Order",
+        REMOVE: "Remove",
         STREET: "Street",
         SUMMARY: {
             P1: "Check out the Unrealistic Food Delivery Website, a spooky restaurant that offers a wide range of Monser-themed dishesd",

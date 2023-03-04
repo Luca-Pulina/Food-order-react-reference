@@ -18,6 +18,7 @@ export default {
         LOADING: "Caricamento",
         NAME: "Nome",
         ORDER: "Ordina",
+        REMOVE: "Rimuovi",
         STREET: "Via",
         SUMMARY: {
             P1: "Scopri il sito Unrealistic Food Delivery, un ristorante spaventoso che offre una vasta gamma di piatti a tema Mostro",
