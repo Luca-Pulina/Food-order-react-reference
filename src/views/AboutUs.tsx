@@ -3,36 +3,13 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import Button from "../components/UI/Button"
 import Card from "../components/UI/Card"
+import { useGetI18NData } from "../hooks/useGetData"
 import { Employee } from "../types/Employee"
 
 const AboutUs = () => {
 	const { t, i18n } = useTranslation()
-	const [staff, setStaff] = useState<Employee[]>([])
 
-	const [httpStatus, setHttpStatus] = useState<"success" | "loading" | "error" | "start">("start")
-
-	useEffect(() => {
-		//TODO: Refactor... create a hook to reuse here and in AvailableMeals
-		const fetchMeal = async () => {
-			setHttpStatus("loading")
-
-			const response: Response = await fetch(
-				`${import.meta.env.VITE_BASE_URL}/${i18n.language}-staff`,
-			)
-
-			if (!response.ok) {
-				const errorMessage = t("ERRORS.HTTP_BAD_REQUEST")
-				throw Error(errorMessage)
-			}
-			const responseData: Employee[] = await response.json()
-			setStaff(responseData)
-			setHttpStatus("success")
-		}
-
-		fetchMeal().catch((error) => {
-			setHttpStatus("error")
-		})
-	}, [i18n.language])
+	const [staff, httpStatus] = useGetI18NData([] as Employee[], "staff")
 
 	const staffContent: Record<string, JSX.Element> = {
 		loading: <h2 className='text-white text-lg'>...{t("LOADING")}</h2>,
