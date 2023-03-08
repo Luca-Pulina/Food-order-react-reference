@@ -63,6 +63,69 @@
 			"price": 14.99
 		}
 	],
-
-	"orders": []
+	"orders": [],
+	"en-staff": [
+		{
+			"id": 1,
+			"name": "Morticia",
+			"role": "Head Chef",
+			"description": "Morticia is the mastermind behind our spine-chilling menu. With over 20 years of experience in the culinary arts, she knows how to create dishes that will make your taste buds scream with delight. Her favorite ingredient? Blood, of course!"
+		},
+		{
+			"id": 2,
+			"name": "Ghoulio",
+			"role": "Server",
+			"description": "Ghoulio is our resident expert on all things spooky. With a degree in horror studies from Transylvania University, he's the perfect guide to help you navigate our restaurant's frightening atmosphere. And don't worry, he won't bite... too hard."
+		},
+		{
+			"id": 3,
+			"name": "The Count",
+			"role": "Bartender",
+			"description": "The Count is the master of our cocktail menu. With his expert knowledge of spirits and potions, he can whip up a drink that will make your blood run cold. Just don't ask him to make you a Bloody Mary... it's too cliché."
+		},
+		{
+			"id": 4,
+			"name": "Mortimer",
+			"role": "Line Cook",
+			"description": "Mortimer may be new to the team, but he's already made a name for himself with his terrifyingly tasty creations. From eyeball-shaped meatballs to finger sandwiches (made with real fingers), he's always pushing the boundaries of culinary horror."
+		},
+		{
+			"id": 5,
+			"name": "Raven",
+			"role": "Hostess",
+			"description": "Raven is the first face you'll see when you enter our restaurant, and she'll make sure you never forget it. With her Gothic style and macabre charm, she sets the tone for the entire dining experience. And don't let her pet raven scare you... he's actually quite friendly."
+		}
+	],
+	"it-staff": [
+		{
+			"id": 1,
+			"name": "Morticia",
+			"role": "Capo Chef",
+			"description": "Morticia è la mente dietro il nostro menu spaventosamente delizioso. Con oltre 20 anni di esperienza nelle arti culinarie, sa creare piatti che faranno urlare di gioia le tue papille gustative. Il suo ingrediente preferito? Il sangue, ovviamente!"
+		},
+		{
+			"id": 2,
+			"name": "Ghoulio",
+			"role": "Cameriere",
+			"description": "Ghoulio è il nostro esperto di tutto ciò che è spaventoso. Con una laurea in studi dell'orrore presso l'Università di Transilvania, è la guida perfetta per aiutarti a navigare nell'atmosfera spaventosa del nostro ristorante. E non preoccuparti, non ti morderà... troppo forte."
+		},
+		{
+			"id": 3,
+			"name": "The Count",
+			"role": "Barman",
+			"description": "The Count è il maestro del nostro menu di cocktail. Con la sua conoscenza esperta di liquori e pozioni, può preparare un drink che ti farà venire i brividi. Ma non chiedergli di farti un Bloody Mary... è troppo cliché."
+		},
+		{
+			"id": 4,
+			"name": "Mortimer",
+			"role": "Cuoco di linea",
+			"description": "Mortimer potrebbe essere nuovo nel team, ma si è già fatto un nome con le sue creazioni terrificanti e gustose. Dai polpettoni a forma di occhio ai sandwich di dita (fatti con vere dita), sta sempre spingendo i limiti dell'orrore culinario."
+		},
+		{
+			"id": 5,
+			"name": "Raven",
+			"role": "Hostess",
+			"description": "Raven è il primo volto che vedrai quando entrerai nel nostro ristorante, e si assicurerà che non lo dimenticherai mai. Con il suo stile gotico e il suo fascino macabro, stabilisce il tono per l'intera esperienza culinaria. E non lasciare che il suo corvo domestico ti spaventi... in realtà è abbastanza amichevole."
+		}
+	]
 }

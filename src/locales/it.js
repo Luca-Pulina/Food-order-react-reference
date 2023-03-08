@@ -10,14 +10,18 @@ export default {
         CLOSE: "Chiudi",
         CONFIRM: "Conferma",
         CURRENCY: "€",
+        DETAILS: "Info",
+        EMPLOYEE: "Employee",
         ERROR: "Errore",
         ERRORS: {
             HTTP_BAD_REQUEST: "Errore HTTP :-( ",
         },
+        GO_TO_HOME: "Vai alla Home",
         IS_EMPTY: "è vuoto",
         LOADING: "Caricamento",
         NAME: "Nome",
         ORDER: "Ordina",
+        OUR_STAFF: "Il nostro staff",
         REMOVE: "Rimuovi",
         STREET: "Via",
         SUMMARY: {

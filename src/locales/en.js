@@ -10,14 +10,18 @@ export default {
         CLOSE: "Close",
         CONFIRM: "Confirm",
         CURRENCY: "$",
+        DETAILS: "Details",
+        EMPLOYEE: "Dipendente",
         ERROR: "Error",
         ERRORS: {
             HTTP_BAD_REQUEST: "HTTP Error :-( ",
         },
+        GO_TO_HOME: "Go To Home",
         IS_EMPTY: "is Empty",
         LOADING: "Loading",
         NAME: "Name",
         ORDER: "Order",
+        OUR_STAFF: "Our Staff",
         REMOVE: "Remove",
         STREET: "Street",
         SUMMARY: {
