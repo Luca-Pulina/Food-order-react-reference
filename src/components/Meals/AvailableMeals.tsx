@@ -1,37 +1,12 @@
-import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { useGetI18NData } from "../../hooks/useGetData"
 import { Dish } from "../../types/Meal"
 import Card from "../UI/Card"
 import MealItem from "./MealItem"
 
 const AvailableMeals = () => {
 	const { t, i18n } = useTranslation()
-	const [meals, setMeals] = useState<Dish[]>([])
-
-	const [httpStatus, setHttpStatus] = useState<"success" | "loading" | "error" | "start">("start")
-
-	useEffect(() => {
-		//TODO: Refactor....maybe with axios
-		const fetchMeal = async () => {
-			setHttpStatus("loading")
-
-			const response: Response = await fetch(
-				`${import.meta.env.VITE_BASE_URL}/${i18n.language}-meals`,
-			)
-
-			if (!response.ok) {
-				const errorMessage = t("ERRORS.HTTP_BAD_REQUEST")
-				throw Error(errorMessage)
-			}
-			const responseData: Dish[] = await response.json()
-			setMeals(responseData)
-			setHttpStatus("success")
-		}
-
-		fetchMeal().catch((error) => {
-			setHttpStatus("error")
-		})
-	}, [i18n.language])
+	const [meals, httpStatus] = useGetI18NData([] as Dish[], "meals")
 
 	const cardContent: Record<string, JSX.Element> = {
 		loading: <h2 className='text-white text-lg'>...{t("LOADING")}</h2>,
